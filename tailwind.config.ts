@@ -8,6 +8,8 @@ const config: Config = {
   ],
   safelist: [
     { pattern: /text-./ },
+    { pattern: /bg-./ },
+    { pattern: /border-./ },
     // …
   ],
   theme: {

@@ -25,6 +25,17 @@ export default async function handler(
               name
             }
           }
+          pokemon_v2_pokemonsprites {
+            sprites(path: "other")
+          }
+          pokemon_v2_pokemonabilities {
+            pokemon_v2_ability {
+              name
+              pokemon_v2_abilityeffecttexts {
+                effect
+              }
+            }
+          }
         }
       }
     `,
@@ -35,6 +46,7 @@ export default async function handler(
       pokemon_v2_pokemonstats,
       pokemon_v2_pokemonabilities,
       pokemon_v2_pokemontypes,
+      pokemon_v2_pokemonsprites,
       ...rest
     }) => {
       return {
@@ -52,6 +64,9 @@ export default async function handler(
         types: pokemon_v2_pokemontypes.map(
           ({ pokemon_v2_type }) => pokemon_v2_type
         ),
+        sprite:
+          pokemon_v2_pokemonsprites[0]?.sprites["official-artwork"]
+            ?.front_shiny,
         ...rest,
       }
     }

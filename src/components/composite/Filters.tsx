@@ -31,7 +31,6 @@ const Filters: React.FC<IFiltersProps> = ({ setResults }) => {
 
   const handleFilter = useCallback(async () => {
     const typeFilterQuery = filters.type ? `type=${filters.type}` : ""
-    // const statusFilterQuery = filters.status ? `status=${filters.status}` : ""
 
     const results = await (
       await fetch(`/api/filters/?${typeFilterQuery}`)
@@ -41,7 +40,6 @@ const Filters: React.FC<IFiltersProps> = ({ setResults }) => {
   }, [filters.type])
 
   const handleSearchFilter = useCallback(async () => {
-    console.log(debouncedValue)
     const results = await (
       await fetch(`/api/search/?name=${debouncedValue}`)
     ).json()

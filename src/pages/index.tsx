@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google"
-import { useCallback, useEffect, useState } from "react"
-import Link from "next/link"
+import { useEffect, useState } from "react"
 import { Filters } from "@/components"
 import ResultsGrid from "@/components/composite/ResultsGrid"
 
@@ -12,8 +11,10 @@ export default function Home() {
   // Fetch initial results
   useEffect(() => {
     const getPokeData = async () => {
-      const data = await (await fetch("/api/pokemon")).json()
-      setPokemonArray(data.results)
+      if (!pokemonArray.length) {
+        const data = await (await fetch("/api/pokemon")).json()
+        setPokemonArray(data)
+      }
     }
 
     getPokeData()

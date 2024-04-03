@@ -1,10 +1,16 @@
-import gqlFetch from "../gqlFetch"
+import type { NextApiRequest, NextApiResponse } from "next"
+import gqlFetch from "@/lib/graphql/gqlFetch"
 
-export const queryAll = async () => {
-  const { data } = await gqlFetch({
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { name } = req.query
+
+  const data = await gqlFetch({
     query: `
-    query PokeApiSearchQuery {
-        pokemon_v2_pokemon {
+      query PokeApiPageQuery {
+        pokemon_v2_pokemon(where: {name: {_eq: ${name}}}) {
           name
           height
           id
@@ -32,7 +38,7 @@ export const queryAll = async () => {
     `,
   })
 
-  const items = data.pokemon_v2_pokemon.map(
+  const pokemonData = data["pokemon_v2_pokemon"].map(
     ({
       pokemon_v2_pokemonstats,
       pokemon_v2_pokemonabilities,
@@ -59,5 +65,5 @@ export const queryAll = async () => {
     }
   )
 
-  console.log("ITEMS", items)
+  res.status(200).send(pokemonData)
 }
