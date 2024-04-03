@@ -1,0 +1,10 @@
+@import '@radix-ui/colors/violet.css';
+
+input {
+    color: var(--violet-11);
+}
+
+input::placeholder {
+    color: var(--violet-11);
+
+}
