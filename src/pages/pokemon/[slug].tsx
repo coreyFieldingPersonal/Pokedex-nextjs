@@ -4,15 +4,17 @@ import Image from "next/image"
 import { useState } from "react"
 
 export const getStaticPaths = async () => {
-  const data = await (await fetch("/api/pokemon")).json()
+  const data = await (await fetch("https://pokeapi.co/api/v2/pokemon/")).json()
 
-  const paths = data?.map((item: any) => {
-    return {
-      params: {
-        slug: item.name ?? "",
-      },
-    }
-  })
+  const paths = data?.results
+    .filter((result: any) => result.id)
+    .map((item: any) => {
+      return {
+        params: {
+          slug: item.name ?? "",
+        },
+      }
+    })
 
   return {
     paths: paths ?? [],
@@ -24,11 +26,11 @@ export const getStaticProps = async (ctx: any) => {
   const { params } = ctx
   const slug = params.slug ?? ""
 
-  const data = await (await fetch(`/api/pokemon/?name=${slug}`)).json()
+  const data = (await (await fetch(`/api/search/?name=${slug}`)).json()) ?? {}
   return {
     props: {
       slug: slug ?? "",
-      ...data,
+      ...(data ?? {}),
     },
   }
 }

@@ -5,7 +5,16 @@ import {
 } from "@radix-ui/react-tooltip"
 import "./styles.css"
 
-export default function Tooltip({ open, onOpenChange, children }) {
+interface ITooltipProps {
+  open: boolean
+  onOpenChange: any
+  children: React.ReactNode[]
+}
+export default function Tooltip({
+  open,
+  onOpenChange,
+  children,
+}: ITooltipProps) {
   return (
     <TooltipComponent
       open={open}

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 
-export const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState("")
-  const timerRef = useRef()
+export const useDebounce = (value: string | undefined, delay: number) => {
+  const [debouncedValue, setDebouncedValue] = useState<string | undefined>("")
+  const timerRef = useRef<any | null>(null)
 
   useEffect(() => {
     timerRef.current = setTimeout(() => setDebouncedValue(value), delay)
