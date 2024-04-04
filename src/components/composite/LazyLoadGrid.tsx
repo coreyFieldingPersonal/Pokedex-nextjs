@@ -16,7 +16,7 @@ export type Results = {
   name: string
   types: keyof typeof PokemonType
   stats: Record<string, { value: number }>[]
-  sprite: string
+  sprites: string[]
 }[]
 
 interface IResultsGrid {
@@ -62,6 +62,7 @@ const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full mt-20">
         {results?.length > 0 &&
           results?.map((item, idx) => {
+            console.log(item)
             return <PokemonCard key={`${item.name}-${idx}`} {...item} />
           })}
       </div>
