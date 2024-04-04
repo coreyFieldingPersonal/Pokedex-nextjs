@@ -11,6 +11,7 @@ import { types } from "@/constants/types"
 import Search from "../core/Search/Search"
 
 interface IFiltersProps {
+  initialResults: any[]
   setResults: Dispatch<SetStateAction<any>>
 }
 
@@ -26,7 +27,7 @@ const Filters: React.FC<IFiltersProps> = ({ setResults }) => {
     type: "",
   })
 
-  const debouncedValue = useDebounce(searchTerm, 500)
+  const debouncedValue = useDebounce(searchTerm, 1000)
 
   const handleFilter = useCallback(async () => {
     const typeFilterQuery = filters.type && `?type=${filters.type}`
@@ -38,11 +39,11 @@ const Filters: React.FC<IFiltersProps> = ({ setResults }) => {
   }, [filters.type])
 
   const handleSearchFilter = useCallback(async () => {
-    const results = await (
+    const searchResult = await (
       await fetch(`/api/search/?name=${debouncedValue}`)
     ).json()
 
-    results.length > 0 && setResults(results)
+    searchResult.length > 0 && setResults(searchResult)
   }, [debouncedValue, setResults])
 
   useEffect(() => {

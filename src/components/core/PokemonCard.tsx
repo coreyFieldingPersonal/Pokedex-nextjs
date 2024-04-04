@@ -32,23 +32,27 @@ const PokemonCard: React.FC<IPokemonCardProps> = (props) => {
             )
           })}
         </div>
-
-        <Image
-          src={sprites[0] ?? ""}
-          width={500}
-          height={500}
-          onLoad={() => <p>loading</p>}
-          alt={name}
-          className="opacity-10 absolute top-0 z-0 right-0 group-hover:scale-110 duration-300 transition-all"
-        />
-        <Image
-          src={sprites[1] ?? ""}
-          width={80}
-          height={80}
-          onLoad={() => <p>loading</p>}
-          alt={name}
-          className="absolute left-4 bottom-4 z-0 right-0"
-        />
+        {sprites && sprites?.length > 0 && (
+          <>
+            <Image
+              src={sprites[0] ?? ""}
+              width={500}
+              height={500}
+              onLoad={() => <p>loading</p>}
+              alt={name}
+              priority
+              className="opacity-10 absolute top-0 z-0 right-0 group-hover:scale-110 duration-300 transition-all"
+            />
+            <Image
+              src={sprites[1] ?? ""}
+              width={80}
+              height={80}
+              onLoad={() => <p>loading</p>}
+              alt={name}
+              className="absolute left-4 bottom-4 z-0 right-0"
+            />
+          </>
+        )}
       </div>
     </Link>
   )

@@ -1,20 +1,20 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextApiRequest, NextApiResponse } from "next"
 import { queryWithParams } from "@/lib/graphql/gqlFetch"
 import mapResults from "@/lib/helpers/mapResults"
 
-export default async function handler(req: NextRequest): Promise<any> {
-  const { searchParams } = new URL(req.url)
-  const name = searchParams.get("name")
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { name } = req.query
 
   const data = await queryWithParams({
-    variables: `limit: 400, where: {name: {_eq: ${name}}}`,
+    variables: `where: {name: {_eq: ${name}}}`,
   })
 
-  const results = data["pokemon_v2_pokemon"]
+  const results = data && data["pokemon_v2_pokemon"]
 
   const items = mapResults(results)
 
-  if (items) {
-    return Response.json({ data: items }, { status: 200 })
-  }
+  res.status(200).send(items)
 }

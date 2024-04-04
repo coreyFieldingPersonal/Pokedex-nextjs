@@ -10,7 +10,7 @@ export default async function handler(
 
   const data =
     (await queryWithParams({
-      variables: `limit: 10, offset: ${offset}`,
+      variables: `offset: ${offset}`,
     })) ?? {}
 
   const results = data["pokemon_v2_pokemon"]
