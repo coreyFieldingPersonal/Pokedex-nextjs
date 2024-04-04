@@ -1,7 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
+import { PokemonType } from "@/types/pokemonTypeEnum"
 
-const PokemonCard = (props) => {
+interface IPokemonCardProps {
+  name: string
+  sprite: string
+  types: keyof (typeof PokemonType)[] | any
+  stats: any[]
+}
+const PokemonCard: React.FC<IPokemonCardProps> = (props) => {
   const { name, sprite, types, stats } = props
   return (
     <Link
@@ -15,7 +22,7 @@ const PokemonCard = (props) => {
         </div>
 
         <div className="flex justify-end align-bottom gap-x-4">
-          {types?.map(({ name, idx }) => {
+          {types?.map(({ name, idx }: { name: string; idx: number }) => {
             const type = `text-${name}`
             return (
               <span key={idx} className={`${type} uppercase font-bold z-50`}>

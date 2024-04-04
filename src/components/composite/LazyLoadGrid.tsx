@@ -65,6 +65,7 @@ const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
             return <PokemonCard key={`${item.name}-${idx}`} {...item} />
           })}
       </div>
+      {/* @ts-ignore */}
       <div ref={ref} className="h-44 mt-8">
         Loading...
       </div>

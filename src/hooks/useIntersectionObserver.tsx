@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 
 export const useIntersectionObserver = (options: any) => {
   const [visible, setVisible] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   const callback = (entries: any) => {
     const [entry] = entries
@@ -15,10 +15,12 @@ export const useIntersectionObserver = (options: any) => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(callback, options)
-    if (ref.current) observer.observe(ref.current)
+    const elementRef = ref.current
+
+    if (elementRef) observer.observe(ref.current)
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current)
+      if (elementRef) observer.unobserve(elementRef)
     }
   }, [ref, options])
 

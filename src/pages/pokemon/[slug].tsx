@@ -33,7 +33,7 @@ export const getStaticProps = async (ctx: any) => {
   }
 }
 
-const TypeBadge = ({ type }) => {
+const TypeBadge = ({ type }: { type: string }) => {
   const typeClasses = `bg-${type} border-${type}`
 
   return (
@@ -49,8 +49,6 @@ export default function Page(props: any) {
   const [open, setOpen] = useState(false)
 
   const router = useRouter()
-
-  console.log(props)
 
   return (
     <div className="font-mono px-6 lg:px-0 max-w-7xl mx-auto 2xl:max-w-7xl py-20">
@@ -78,9 +76,11 @@ export default function Page(props: any) {
           </div>
           <div className="flex gap-x-3 mt-5 justify-end">
             {props.types?.length > 0 &&
-              props.types?.map(({ type, idx }) => (
-                <TypeBadge key={`${type.name}-${idx}`} type={type.name} />
-              ))}
+              props.types?.map(
+                ({ type, idx }: { type: { name: string }; idx: number }) => (
+                  <TypeBadge key={`${type.name}-${idx}`} type={type.name} />
+                )
+              )}
             {/* <Tooltip open={open} onOpenChange={setOpen}>
             <span className="px-5 text-white bg-green-400/40 border-green-500 py-2 flex w-fit text-sm font-bold justify-center border rounded-md backdrop-blur-2xl  lg:static ">
               Grass
@@ -104,18 +104,22 @@ export default function Page(props: any) {
           {props.stats && (
             <table className="w-full">
               <tr className="mb-4">
-                {props.stats?.map(({ stat }, idx) => (
-                  <th key={idx} className="uppercase">
-                    {stat.name.split("-").join(" ")}
-                  </th>
-                ))}
+                {props.stats?.map(
+                  ({ stat }: { stat: { name: string } }, idx: number) => (
+                    <th key={idx} className="uppercase">
+                      {stat.name.split("-").join(" ")}
+                    </th>
+                  )
+                )}
               </tr>
               <tr>
-                {props.stats?.map(({ base_stat }, idx) => (
-                  <td key={idx} className="text-lg">
-                    {base_stat}
-                  </td>
-                ))}
+                {props.stats?.map(
+                  ({ base_stat }: { base_stat: string }, idx: number) => (
+                    <td key={idx} className="text-lg">
+                      {base_stat}
+                    </td>
+                  )
+                )}
               </tr>
             </table>
           )}
