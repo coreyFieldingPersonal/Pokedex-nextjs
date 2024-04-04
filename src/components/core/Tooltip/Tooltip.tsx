@@ -3,7 +3,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@radix-ui/react-tooltip"
-import "./styles.css"
+import styles from "./styles.module.css"
 
 interface ITooltipProps {
   open: boolean
@@ -16,18 +16,19 @@ export default function Tooltip({
   children,
 }: ITooltipProps) {
   return (
-    <TooltipComponent
-      open={open}
-      defaultOpen={true}
-      onOpenChange={onOpenChange}
-      delayDuration={100}
-    >
-      <TooltipTrigger asChild>
-        <span>{children}</span>
-      </TooltipTrigger>
-      <TooltipContent className="TooltipContent bg-zinc-500 p-3 rounded-lg border border-gray-300">
-        Add to library
-      </TooltipContent>
-    </TooltipComponent>
+    <></>
+    // <TooltipComponent
+    //   open={open}
+    //   defaultOpen={true}
+    //   onOpenChange={onOpenChange}
+    //   delayDuration={100}
+    // >
+    //   <TooltipTrigger asChild>
+    //     <span>{children}</span>
+    //   </TooltipTrigger>
+    //   <TooltipContent className="TooltipContent bg-zinc-500 p-3 rounded-lg border border-gray-300">
+    //     Add to library
+    //   </TooltipContent>
+    // </TooltipComponent>
   )
 }

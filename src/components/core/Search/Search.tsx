@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react"
-import "./styles.css"
+import styles from "./styles.module.css"
 
 interface ISearchProps {
   setSearchTerm: Dispatch<SetStateAction<any>>
@@ -28,6 +28,7 @@ const Search: React.FC<ISearchProps> = ({ setSearchTerm }) => (
       }
       placeholder="Search Pokemon"
       className="pl-8 focus:border-transparent focus:ring-0"
+      style={styles}
     />
     <span className="absolute left-2">
       <SearchIconSVG />
