@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react"
-import styles from "./search.module.css"
 
 interface ISearchProps {
   setSearchTerm: Dispatch<SetStateAction<any>>

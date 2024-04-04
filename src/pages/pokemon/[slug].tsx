@@ -4,14 +4,16 @@ import Image from "next/image"
 import { useState } from "react"
 
 export const getStaticPaths = async () => {
-  const data = await (await fetch("https://pokeapi.co/api/v2/pokemon/")).json()
+  const data = await (
+    await fetch("https://pokeapi.co/api/v2/pokemon/?limit=500")
+  ).json()
 
   const paths = data?.results
-    .filter((result: any) => result.id)
-    .map((item: any) => {
+    .filter((result: any) => result.name)
+    .map(({ name }: any) => {
       return {
         params: {
-          slug: item.name ?? "",
+          slug: name ?? "",
         },
       }
     })
