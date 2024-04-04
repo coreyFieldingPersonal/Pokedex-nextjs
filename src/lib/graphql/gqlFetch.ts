@@ -52,7 +52,7 @@ export async function queryWithParams({
     body: JSON.stringify({
       query: `
       query PokeApiQuery {
-        pokemon_v2_pokemon(limit: 10, ${variables ?? ""}) {
+        pokemon_v2_pokemon(${variables ?? ""}) {
           name
           height
           weight

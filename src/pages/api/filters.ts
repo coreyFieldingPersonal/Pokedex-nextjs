@@ -9,7 +9,7 @@ export default async function handler(
   const { type } = req.query
 
   const data = await queryWithParams({
-    variables: `where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_eq: "${type}"}}}}`,
+    variables: `limit: 20, where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_eq: "${type}"}}}}`,
   })
   const results = data["pokemon_v2_pokemon"]
 
