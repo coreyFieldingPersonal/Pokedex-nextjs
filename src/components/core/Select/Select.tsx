@@ -1,6 +1,6 @@
 import * as Select from "@radix-ui/react-select"
 import { Dispatch, SetStateAction, useState } from "react"
-import "./styles.css"
+import styles from "./select.module.css"
 
 interface ISelectComponentProps {
   placeholder: string
@@ -21,9 +21,9 @@ const SelectComponent: React.FC<ISelectComponentProps> = ({
         setValue(value)
       }}
     >
-      <Select.Trigger className="SelectTrigger">
+      <Select.Trigger className={styles.SelectTrigger}>
         <Select.Value placeholder={placeholder} />
-        <Select.Icon />
+        <Select.Icon className={styles.SelectIcon} />
       </Select.Trigger>
       <Select.Portal>
         <Select.Content className="bg-white z-[9999] rounded-lg mt-10 p-1">
@@ -33,7 +33,7 @@ const SelectComponent: React.FC<ISelectComponentProps> = ({
                 <Select.Item
                   key={`${option}-${idx}`}
                   value={option}
-                  className="SelectItem"
+                  className={styles.SelectItem}
                 >
                   <Select.ItemText>{option}</Select.ItemText>
                 </Select.Item>
