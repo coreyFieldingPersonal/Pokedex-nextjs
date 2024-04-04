@@ -30,10 +30,9 @@ const Filters: React.FC<IFiltersProps> = ({ setResults }) => {
   const debouncedValue = useDebounce(searchTerm, 1000)
 
   const handleFilter = useCallback(async () => {
-    const typeFilterQuery = filters.type ? `type=${filters.type}` : ""
-
+    const typeFilterQuery = filters.type && `?type=${filters.type}`
     const results = await (
-      await fetch(`/api/filters/?${typeFilterQuery}`)
+      await fetch(`/api/filters/${typeFilterQuery}`)
     ).json()
     setResults(results)
     return

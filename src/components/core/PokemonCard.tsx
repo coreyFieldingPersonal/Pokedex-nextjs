@@ -26,7 +26,7 @@ const PokemonCard = (props) => {
         </div>
 
         <Image
-          src={sprite}
+          src={sprite ?? ""}
           width={500}
           height={500}
           onLoad={() => <p>loading</p>}

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import gqlFetch from "../../lib/graphql/gqlFetch"
+import baseQuery from "../../lib/graphql/gqlFetch"
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,41 +7,11 @@ export default async function handler(
 ) {
   const { type } = req.query
 
-  const data = await gqlFetch({
-    query: `
-      query PokeApiFilterQuery {
-          pokemon_v2_pokemon(where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_eq: "${type}"}}}}) {
-            name
-            height
-            id
-            pokemon_v2_pokemonstats {
-              pokemon_v2_stat {
-                name
-              }
-              base_stat
-            }
-            pokemon_v2_pokemontypes {
-              pokemon_v2_type {
-                name
-              }
-            }
-            pokemon_v2_pokemonsprites {
-              sprites(path: "other")
-            }
-            pokemon_v2_pokemonabilities {
-              pokemon_v2_ability {
-                name
-                pokemon_v2_abilityeffecttexts {
-                  effect
-                }
-              }
-            }
-          }
-        }
-      `,
+  const data = await baseQuery({
+    variables: `where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_eq: "${type}"}}}}`,
   })
 
-  const items = data["pokemon_v2_pokemon"].map(
+  const items = data.map(
     ({
       pokemon_v2_pokemonstats,
       pokemon_v2_pokemonabilities,
