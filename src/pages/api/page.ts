@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import baseQuery from "@/lib/graphql/gqlFetch"
+import { queryWithParams } from "@/lib/graphql/gqlFetch"
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,11 +7,12 @@ export default async function handler(
 ) {
   const { name } = req.query
 
-  const data = await baseQuery({
+  const data = await queryWithParams({
     variables: `where: {name: {_eq: ${name}}}`,
   })
+  const results = data["pokemon_v2_pokemon"]
 
-  const pokemonData = data?.map(
+  const pokemonData = results?.map(
     ({
       pokemon_v2_pokemonstats,
       pokemon_v2_pokemonabilities,

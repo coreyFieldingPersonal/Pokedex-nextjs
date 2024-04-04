@@ -1,2 +1,2 @@
 export { default as Filters } from "./Filters"
-export { default as ResultsGrid } from "./ResultsGrid"
+export { default as ResultsGrid } from "./LazyLoadGrid"

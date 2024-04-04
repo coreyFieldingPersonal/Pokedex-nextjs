@@ -2,12 +2,11 @@ import { Tooltip } from "@/components"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import { useState } from "react"
-import baseQuery from "@/lib/graphql/gqlFetch"
 
 export const getStaticPaths = async () => {
-  const data = (await baseQuery()) ?? {}
+  const data = await (await fetch("/api/pokemon")).json()
 
-  const paths = data?.results?.map((item: any) => {
+  const paths = data?.map((item: any) => {
     return {
       params: {
         slug: item.name ?? "",
@@ -25,8 +24,7 @@ export const getStaticProps = async (ctx: any) => {
   const { params } = ctx
   const slug = params.slug ?? ""
 
-  const data =
-    (await baseQuery({ variables: `where: {name: {_eq: ${slug}}}` })) ?? null
+  const data = await (await fetch(`/api/pokemon/?name=${slug}`)).json()
   return {
     props: {
       slug: slug ?? "",

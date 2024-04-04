@@ -5,9 +5,10 @@ import {
   useEffect,
   useState,
 } from "react"
+
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 import { PokemonType } from "@/types/pokemonTypeEnum"
-import { PokemonCard } from "../"
+import { PokemonCard } from ".."
 
 const FETCH_AMOUNT = 10
 
@@ -28,9 +29,9 @@ interface IResultsGrid {
  * @param results
  * @param setResults
  *
- * Display results in grid format with lazy loading on intersection.
+ * Display results in grid format with lazy loading on scroll.
  */
-const ResultsGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
+const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
   const [offset, setOffset] = useState(FETCH_AMOUNT)
 
   const [ref, visible] = useIntersectionObserver({
@@ -40,8 +41,14 @@ const ResultsGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
   })
 
   const loadMoreResults = useCallback(async () => {
-    const data = await (await fetch(`/api/pagination/?offset=${offset}`)).json()
-    setResults((prevState: any[]) => [...prevState, ...data])
+    const newResults = await (
+      await fetch(`/api/pagination/?offset=${offset}`)
+    ).json()
+
+    if (results.length > 0) {
+      setResults((prevState: any[]) => [...prevState, ...newResults])
+    }
+
     setOffset(offset + FETCH_AMOUNT)
   }, [offset])
 
@@ -49,6 +56,7 @@ const ResultsGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
   useEffect(() => {
     visible && loadMoreResults()
   }, [visible])
+
   return (
     <>
       <div className="grid grid-cols-4 gap-6 w-full mt-20">
@@ -57,11 +65,11 @@ const ResultsGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
             return <PokemonCard key={`${item.name}-${idx}`} {...item} />
           })}
       </div>
-      <div ref={ref} className="h-96 mt-8">
+      <div ref={ref} className="h-44 mt-8">
         Loading...
       </div>
     </>
   )
 }
 
-export default ResultsGrid
+export default LazyLoadGrid
