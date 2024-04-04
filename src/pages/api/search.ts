@@ -7,7 +7,7 @@ export default async function handler(req: NextRequest): Promise<any> {
   const name = searchParams.get("name")
 
   const data = await queryWithParams({
-    variables: `limit: 500, where: {name: {_eq: ${name}}}`,
+    variables: `limit: 400, where: {name: {_eq: ${name}}}`,
   })
 
   const results = data["pokemon_v2_pokemon"]
@@ -15,6 +15,6 @@ export default async function handler(req: NextRequest): Promise<any> {
   const items = mapResults(results)
 
   if (items) {
-    return Response.json(items, { status: 200 })
+    return Response.json({ data: items }, { status: 200 })
   }
 }
