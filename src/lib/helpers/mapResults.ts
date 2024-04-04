@@ -1,6 +1,8 @@
 type Results = {
   pokemon_v2_pokemonstats: {
-    pokemon_v2_stat: string
+    pokemon_v2_stat: {
+      name: string
+    }
     base_stat: number
   }[]
   pokemon_v2_pokemonabilities: {
@@ -35,7 +37,7 @@ export default function mapResults(results: Results) {
             ({ pokemon_v2_stat, base_stat }) => {
               return {
                 stat: {
-                  name: pokemon_v2_stat,
+                  name: pokemon_v2_stat.name,
                   value: base_stat,
                 },
               }
