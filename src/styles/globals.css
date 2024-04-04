@@ -2,28 +2,18 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/violet.css';
-
 @import '@radix-ui/colors/violet.css';
 @import '@radix-ui/colors/black-alpha.css';
 @import '@radix-ui/colors/mauve.css';
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: #0d0d0e;
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+body {
+  color: white;
+  background: var(--background);
+}
 
 input, input::placeholder {
   color: var(--violet-11);
@@ -31,5 +21,4 @@ input, input::placeholder {
 
 button {
   all: unset;
-  border: 1px solid;
 }
