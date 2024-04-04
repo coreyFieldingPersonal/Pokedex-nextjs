@@ -28,7 +28,7 @@ const Search: React.FC<ISearchProps> = ({ setSearchTerm }) => (
         setSearchTerm(e.target.value)
       }
       placeholder="Search Pokemon"
-      className={`pl-8 focus:border-transparent focus:ring-0 ${styles.search}`}
+      className="pl-8 focus:border-transparent focus:ring-0"
     />
     <span className="absolute left-2">
       <SearchIconSVG />

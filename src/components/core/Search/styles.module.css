@@ -1,0 +1,7 @@
+#search {
+    color: var(--violet-11);
+}
+
+#search::placeholder {
+    color: var(--violet-11);
+}
