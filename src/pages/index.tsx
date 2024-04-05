@@ -30,7 +30,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <div className="max-w-7xl mx-auto 2xl:max-w-screen-2xl z-10 w-full items-center justify-between font-mono text-sm lg:flex flex-col">
+      <div className="max-w-7xl mx-auto 2xl:max-w-screen-2xl z-10 w-full items-center justify-between font-mono text-sm lg:flex flex-col pb-44">
         <Filters initialResults={initialResults} setResults={setPokemonArray} />
         <LazyLoadGrid results={pokemonArray} setResults={setPokemonArray} />
       </div>

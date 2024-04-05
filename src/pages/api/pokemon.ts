@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const data = (await queryWithParams({ variables: "limit: 10" })) ?? {}
+  const data = (await queryWithParams({ variables: "limit: 20" })) ?? {}
 
   const results = data["pokemon_v2_pokemon"]
 

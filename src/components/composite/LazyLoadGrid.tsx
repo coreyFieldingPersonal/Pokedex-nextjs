@@ -17,12 +17,14 @@ import { PokemonType } from "@/types/pokemonTypeEnum"
 
 const FETCH_AMOUNT = 10
 
-export type Results = {
+type Result = {
   name: string
   types: keyof typeof PokemonType
   stats: Record<string, { value: number }>[]
   sprites: string[]
-}[]
+}
+
+export type Results = Result[]
 
 interface IResultsGrid {
   results: Results
@@ -50,9 +52,7 @@ const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
       await fetch(`/api/pagination/?offset=${offset}`)
     ).json()
 
-    if (results.length > 0) {
-      setResults((prevState: any[]) => [...prevState, ...newResults])
-    }
+    setResults((prevState: any[]) => [...prevState, ...newResults])
 
     setOffset(offset + FETCH_AMOUNT)
   }, [offset])
@@ -67,12 +67,21 @@ const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 w-full mt-20">
         {results?.length > 0 &&
           results?.map((item, idx) => {
-            return <PokemonCard key={`${item.name}-${idx}`} {...item} />
+            return (
+              <>
+                <PokemonCard key={`${item.name}-${idx}`} {...item} />
+                {results[results.length - 1] == results[idx] && (
+                  <div
+                    // @ts-ignore
+                    ref={ref}
+                    className="group overflow-hidden flex items-center w-full ring-2 ring-yellow-300/50 bg-gradient-to-br from-[#0f123c] to-[#151a56] backdrop-blur-2xl justify-center rounded-lg h-56 lg:static lg:w-auto p-5 animate-pulse"
+                  >
+                    Catching more pokemon...
+                  </div>
+                )}
+              </>
+            )
           })}
-      </div>
-      {/* @ts-ignore */}
-      <div ref={ref} className="h-96 mt-8">
-        Loading...
       </div>
     </>
   )
