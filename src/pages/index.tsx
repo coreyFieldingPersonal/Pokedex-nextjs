@@ -32,10 +32,7 @@ export default function Home() {
     >
       <div className="max-w-7xl mx-auto 2xl:max-w-screen-2xl z-10 w-full items-center justify-between font-mono text-sm lg:flex flex-col">
         <Filters initialResults={initialResults} setResults={setPokemonArray} />
-        <LazyLoadGrid
-          results={pokemonArray.length > 0 ? pokemonArray : initialResults}
-          setResults={setPokemonArray}
-        />
+        <LazyLoadGrid results={pokemonArray} setResults={setPokemonArray} />
       </div>
     </main>
   )

@@ -3,6 +3,7 @@ export async function queryWithParams({
 }: {
   variables?: string | undefined
 }) {
+  console.log(variables)
   const response = await fetch("https://beta.pokeapi.co/graphql/v1beta", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

@@ -71,7 +71,7 @@ const LazyLoadGrid: React.FC<IResultsGrid> = ({ results, setResults }) => {
           })}
       </div>
       {/* @ts-ignore */}
-      <div ref={ref} className="h-44 mt-8">
+      <div ref={ref} className="h-96 mt-8">
         Loading...
       </div>
     </>
