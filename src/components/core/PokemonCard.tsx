@@ -1,5 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
+
+// Import Types.
 import { PokemonType } from "@/types/pokemonTypeEnum"
 
 interface IPokemonCardProps {

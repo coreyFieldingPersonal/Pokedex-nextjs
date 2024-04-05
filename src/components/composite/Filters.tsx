@@ -5,10 +5,16 @@ import {
   useEffect,
   useState,
 } from "react"
+
+// Import Components.
 import { Select } from ".."
-import { useDebounce } from "@/hooks/useDebounce"
-import { types } from "@/constants/types"
 import Search from "../core/Search/Search"
+
+// Import Hooks.
+import { useDebounce } from "@/hooks/useDebounce"
+
+// Import Types.
+import { types } from "@/constants/types"
 
 interface IFiltersProps {
   initialResults: any[]

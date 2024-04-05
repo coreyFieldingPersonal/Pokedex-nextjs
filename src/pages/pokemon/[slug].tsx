@@ -1,7 +1,7 @@
-// import { Tooltip } from "@/components"
 import { useRouter } from "next/router"
 import Image from "next/image"
-import { useState } from "react"
+
+// Import Components
 import { LeftArrowIcon } from "@/components/Icons/LeftArrowIcon"
 
 export const getStaticPaths = async () => {
@@ -53,8 +53,6 @@ const TypeBadge = ({ type }: { type: string }) => {
 }
 
 export default function Page({ data }: any) {
-  const [open, setOpen] = useState(false)
-
   const { sprites, name, types, height, weight, abilities, stats } = data
 
   const router = useRouter()
@@ -92,11 +90,6 @@ export default function Page({ data }: any) {
                   <TypeBadge key={`${type.name}-${idx}`} type={type.name} />
                 )
               )}
-            {/* <Tooltip open={open} onOpenChange={setOpen}>
-            <span className="px-5 text-white bg-green-400/40 border-green-500 py-2 flex w-fit text-sm font-bold justify-center border rounded-md backdrop-blur-2xl  lg:static ">
-              Grass
-            </span>
-          </Tooltip> */}
           </div>
           <div className="mt-4">
             <div className="text-lg border-b flex justify-between py-1">

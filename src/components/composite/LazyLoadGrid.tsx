@@ -6,9 +6,14 @@ import {
   useState,
 } from "react"
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
-import { PokemonType } from "@/types/pokemonTypeEnum"
+// Import Components.
 import { PokemonCard } from ".."
+
+// Import Hooks.
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+
+// Import Types.
+import { PokemonType } from "@/types/pokemonTypeEnum"
 
 const FETCH_AMOUNT = 10
 

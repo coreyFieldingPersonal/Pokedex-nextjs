@@ -1,5 +1,8 @@
 import { Dispatch, SetStateAction } from "react"
+
+// Import Components.
 import { SearchIcon } from "@/components/Icons/SearchIcon"
+
 interface ISearchProps {
   setSearchTerm: Dispatch<SetStateAction<any>>
 }

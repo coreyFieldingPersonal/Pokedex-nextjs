@@ -1,8 +1,11 @@
-import { Inter } from "next/font/google"
 import { useEffect, useState } from "react"
+
+// Import Components.
 import { Filters } from "@/components"
-import ResultsGrid from "@/components/composite/LazyLoadGrid"
 import LazyLoadGrid from "@/components/composite/LazyLoadGrid"
+
+// Import Fonts.
+import { Inter } from "next/font/google"
 
 const inter = Inter({ subsets: ["latin"] })
 
